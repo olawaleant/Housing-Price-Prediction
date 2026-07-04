@@ -4,10 +4,13 @@ import numpy as np
 import joblib
 
 def feature_engineering(data):
+    data = data.copy()
     data["area_per_story"] = data["area"] / data["stories"]
     data["bedrooms_per_story"] = data["bedrooms"] / data["stories"]
     data["bedrooms_per_area"] = data["bedrooms"] / data["area"]
+    data["bathrooms_per_story"] = data["bathrooms"] / data["stories"]
     return data
+
  
 st.set_page_config(
     page_title="Housing Price Predictor",
@@ -40,7 +43,7 @@ cat_attribs = [
 num_attribs = ["area", "bedrooms", "bathrooms", "stories", "parking"]
 
 # Header
-st.title("🏠 Olawale Housing Price Predictor")
+st.title("🏠  Housing Price Predictor")
 st.write(
     "Predict house price for a property using a Random Forest "
     "model trained on the Housing dataset."
